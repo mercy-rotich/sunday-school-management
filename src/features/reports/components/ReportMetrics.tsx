@@ -20,41 +20,41 @@ interface MetricCardProps {
 function MetricCard({ label, value, sub, icon, variant }: MetricCardProps) {
   const styles = {
     default: {
-      card:  "bg-white border border-stone-200",
-      label: "text-stone-400",
-      value: "text-stone-800",
-      sub:   "text-stone-400",
-      well:  "bg-sky-50 text-sky-600",
+      card:  "bg-white border border-gray-200 border-l-4 border-l-[#00A551]",
+      label: "text-[#00A551]",
+      value: "text-gray-800",
+      sub:   "text-gray-400",
+      well:  "bg-green-50 text-[#00A551]",
     },
     expense: {
-      card:  "bg-white border border-stone-200",
-      label: "text-stone-400",
-      value: "text-stone-800",
-      sub:   "text-stone-400",
+      card:  "bg-white border border-gray-200 border-l-4 border-l-rose-500",
+      label: "text-rose-500",
+      value: "text-gray-800",
+      sub:   "text-gray-400",
       well:  "bg-rose-50 text-rose-500",
     },
     net: {
-      card:  "bg-emerald-50 border border-emerald-200",
-      label: "text-emerald-700",
-      value: "text-emerald-800",
-      sub:   "text-emerald-600",
-      well:  "bg-emerald-100 text-emerald-600",
+      card:  "bg-green-50 border border-green-200 border-l-4 border-l-[#007A3C]",
+      label: "text-[#007A3C]",
+      value: "text-[#007A3C]",
+      sub:   "text-green-600",
+      well:  "bg-green-100 text-[#007A3C]",
     },
   }[variant];
 
   return (
-    <div className={`rounded-xl p-5 flex flex-col gap-3 shadow-sm ${styles.card}`}>
+    <div className={`rounded-2xl p-5 flex flex-col gap-3 shadow-card ${styles.card}`}>
       <div className="flex items-start justify-between">
-        <span className={`text-[10px] font-extrabold tracking-[0.08em] uppercase ${styles.label}`}>
+        <span className={`text-xs font-semibold uppercase tracking-wide ${styles.label}`}>
           {label}
         </span>
-        <div className={`size-9 rounded-lg flex items-center justify-center ${styles.well}`}>
+        <div className={`size-10 rounded-xl flex items-center justify-center ${styles.well}`}>
           {icon}
         </div>
       </div>
       <div>
         <p className={`text-2xl font-bold tracking-tight font-mono ${styles.value}`}>{value}</p>
-        <p className={`mt-1 text-[11px] ${styles.sub}`}>{sub}</p>
+        <p className={`mt-1 text-sm ${styles.sub}`}>{sub}</p>
       </div>
     </div>
   );
@@ -68,21 +68,21 @@ export function ReportMetrics() {
         value={fmt(METRICS.totalContributions)}
         sub="All time · since January 2024"
         variant="default"
-        icon={<IC.Trend className="size-4" />}
+        icon={<IC.Trend className="size-5" />}
       />
       <MetricCard
         label="Total Expenses"
         value={fmt(METRICS.totalExpenses)}
         sub="All outflows · approved by admin"
         variant="expense"
-        icon={<IC.ArrowRight className="size-4 rotate-90" />}
+        icon={<IC.ArrowRight className="size-5 rotate-90" />}
       />
       <MetricCard
         label="Net Balance (Available)"
         value={fmt(netBalance)}
         sub="Contributions minus all expenses"
         variant="net"
-        icon={<IC.Wallet className="size-4" />}
+        icon={<IC.Wallet className="size-5" />}
       />
     </div>
   );

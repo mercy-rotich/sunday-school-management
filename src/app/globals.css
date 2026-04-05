@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,72 @@
 
 @layer base {
   html {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Cards */
+  .card-base {
+    @apply rounded-2xl border border-gray-200 bg-white shadow-card transition-all duration-200;
+  }
+  .card-hover {
+    @apply hover:shadow-card-hover hover:border-gray-300;
+  }
+  .card-premium {
+    @apply card-base card-hover relative overflow-hidden;
+  }
+
+  /* Gradient text */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-[#007A3C] to-[#00A551] bg-clip-text text-transparent;
+  }
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-[#E05520] to-[#FF6B2B] bg-clip-text text-transparent;
+  }
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-sky-700 to-sky-500 bg-clip-text text-transparent;
+  }
+
+  /* Icon boxes */
+  .icon-box-primary {
+    @apply flex items-center justify-center rounded-xl bg-gradient-primary-light text-[#007A3C];
+  }
+  .icon-box-secondary {
+    @apply flex items-center justify-center rounded-xl bg-gradient-secondary-light text-[#E05520];
+  }
+  .icon-box-accent {
+    @apply flex items-center justify-center rounded-xl bg-gradient-accent-light text-sky-600;
+  }
+
+  /* Buttons */
+  .btn-modern {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-600 transition-all duration-150 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 active:scale-95;
+  }
+  .btn-modern-primary {
+    @apply bg-gradient-brand text-white border-[#007A3C] shadow-sm hover:shadow-glow;
+  }
+
+  /* Badges */
+  .badge-primary {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-50 text-green-800 border border-green-200 text-xs font-semibold;
+  }
+  .badge-secondary {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-orange-50 text-orange-700 border border-orange-200 text-xs font-semibold;
+  }
+  .badge-alert {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-50 text-red-700 border border-red-200 text-xs font-semibold;
+  }
+
+  /* Section labels */
+  .label-section {
+    @apply text-xs font-semibold uppercase tracking-wide text-gray-500;
+  }
+
+  /* Dividers */
+  .divider-light {
+    @apply border-gray-100;
   }
 }

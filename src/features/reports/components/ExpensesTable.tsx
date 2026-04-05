@@ -26,16 +26,16 @@ const MOCK_EXPENSES: Expense[] = [
 ];
 
 const CATEGORY_STYLES: Record<ExpenseCategory, string> = {
-  Supplies:  "bg-sky-50   text-sky-700   border-sky-200",
-  Event:     "bg-violet-50 text-violet-700 border-violet-200",
-  Welfare:   "bg-amber-50  text-amber-700  border-amber-200",
-  Utilities: "bg-stone-50  text-stone-600  border-stone-200",
-  Training:  "bg-emerald-50 text-emerald-700 border-emerald-200",
+  Supplies:  "bg-green-50   text-[#007A3C]  border-green-200",
+  Event:     "bg-orange-50  text-[#E05520]  border-orange-200",
+  Welfare:   "bg-amber-50   text-amber-700  border-amber-200",
+  Utilities: "bg-gray-50    text-gray-600   border-gray-200",
+  Training:  "bg-blue-50    text-blue-700   border-blue-200",
 };
 
 function CategoryBadge({ category }: { category: ExpenseCategory }) {
   return (
-    <span className={`inline-block text-[10px] font-semibold border px-2 py-0.5 rounded-full whitespace-nowrap ${CATEGORY_STYLES[category]}`}>
+    <span className={`inline-block text-xs font-semibold border px-2.5 py-1 rounded-full whitespace-nowrap ${CATEGORY_STYLES[category]}`}>
       {category}
     </span>
   );
@@ -43,7 +43,7 @@ function CategoryBadge({ category }: { category: ExpenseCategory }) {
 
 function TH({ children }: { children: React.ReactNode }) {
   return (
-    <th className="px-5 py-3 text-left text-[10px] font-extrabold tracking-[0.08em] uppercase text-stone-400 whitespace-nowrap border-b-2 border-stone-100 bg-stone-50/60">
+    <th className="px-5 py-3 text-left text-xs font-bold tracking-wide uppercase text-gray-400 whitespace-nowrap border-b-2 border-gray-100 bg-gray-50/60">
       {children}
     </th>
   );
@@ -53,22 +53,22 @@ export function ExpensesTable() {
   const total = MOCK_EXPENSES.reduce((s, e) => s + e.amount, 0);
 
   return (
-    <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
 
       {/* Header */}
-      <div className="px-5 py-4 border-b border-stone-100 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
         <div>
-          <h2 className="text-[14px] font-bold text-stone-800">Recent Expenses</h2>
-          <p className="text-[11px] text-stone-400 mt-0.5">
+          <h2 className="text-base font-bold text-gray-900">Recent Expenses</h2>
+          <p className="text-sm text-gray-500 mt-0.5">
             All approved outflows from the general fund
           </p>
         </div>
-        <span className="text-[12px] font-bold font-mono text-rose-600 bg-rose-50 border border-rose-100 px-3 py-1 rounded-lg">
+        <span className="text-sm font-bold font-mono text-rose-600 bg-rose-50 border border-rose-100 px-3 py-1.5 rounded-xl">
           -{fmt(total)}
         </span>
       </div>
 
-      {/* Table — scrollable on mobile */}
+      {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse min-w-[560px]">
           <thead>
@@ -83,24 +83,24 @@ export function ExpensesTable() {
             {MOCK_EXPENSES.map((exp, i) => (
               <tr
                 key={exp.id}
-                className={`border-b border-stone-50 last:border-b-0 transition-colors ${
-                  i % 2 === 0 ? "bg-white hover:bg-stone-50/60" : "bg-stone-50/30 hover:bg-stone-100/40"
+                className={`border-b border-gray-50 last:border-b-0 transition-colors ${
+                  i % 2 === 0 ? "bg-white hover:bg-gray-50/60" : "bg-gray-50/30 hover:bg-gray-100/40"
                 }`}
               >
-                <td className="px-5 py-3 whitespace-nowrap">
-                  <p className="text-[12px] font-medium text-stone-700">
+                <td className="px-5 py-3.5 whitespace-nowrap">
+                  <p className="text-sm font-medium text-gray-700">
                     {new Date(exp.date).toLocaleDateString("en-KE", { day: "numeric", month: "short", year: "numeric" })}
                   </p>
                 </td>
-                <td className="px-5 py-3">
+                <td className="px-5 py-3.5">
                   <CategoryBadge category={exp.category} />
                 </td>
-                <td className="px-5 py-3">
-                  <p className="text-[12px] text-stone-700">{exp.description}</p>
-                  <p className="text-[10px] text-stone-400 mt-0.5">Approved by {exp.approvedBy}</p>
+                <td className="px-5 py-3.5">
+                  <p className="text-sm text-gray-700">{exp.description}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">Approved by {exp.approvedBy}</p>
                 </td>
-                <td className="px-5 py-3 whitespace-nowrap">
-                  <span className="text-[13px] font-bold font-mono text-rose-600">
+                <td className="px-5 py-3.5 whitespace-nowrap">
+                  <span className="text-sm font-bold font-mono text-rose-600">
                     -{fmt(exp.amount)}
                   </span>
                 </td>
@@ -111,11 +111,11 @@ export function ExpensesTable() {
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-3 border-t border-stone-100 bg-stone-50/50 flex items-center justify-between">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+      <div className="px-5 py-3.5 border-t border-gray-100 bg-gray-50/50 flex items-center justify-between">
+        <span className="text-xs font-bold uppercase tracking-wider text-gray-400">
           Total Shown
         </span>
-        <span className="text-[14px] font-bold font-mono text-rose-600">-{fmt(total)}</span>
+        <span className="text-base font-bold font-mono text-rose-600">-{fmt(total)}</span>
       </div>
     </div>
   );

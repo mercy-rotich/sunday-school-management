@@ -46,16 +46,16 @@ const SEED_PAYMENTS: TriagePayment[] = [
 ];
 
 const REASON_STYLES: Record<UnallocatedReason, string> = {
-  "Unknown number":      "bg-orange-50 text-orange-700 border-orange-200",
+  "Unknown number":      "bg-orange-50 text-[#E05520] border-orange-200",
   "Ambiguous reference": "bg-amber-50  text-amber-700  border-amber-200",
-  "3 children linked":   "bg-violet-50 text-violet-700 border-violet-200",
-  "Manual override":     "bg-sky-50    text-sky-700    border-sky-200",
+  "3 children linked":   "bg-blue-50   text-blue-700   border-blue-200",
+  "Manual override":     "bg-green-50  text-[#007A3C]  border-green-200",
   "Duplicate detected":  "bg-rose-50   text-rose-700   border-rose-200",
 };
 
 function ReasonBadge({ reason }: { reason: UnallocatedReason }) {
   return (
-    <span className={`inline-block text-[10px] font-semibold border px-2 py-0.5 rounded-full whitespace-nowrap ${REASON_STYLES[reason]}`}>
+    <span className={`inline-block text-xs font-semibold border px-2.5 py-1 rounded-full whitespace-nowrap ${REASON_STYLES[reason]}`}>
       {reason}
     </span>
   );
@@ -63,7 +63,7 @@ function ReasonBadge({ reason }: { reason: UnallocatedReason }) {
 
 function TH({ children }: { children: React.ReactNode }) {
   return (
-    <th className="px-5 py-3 text-left text-[10px] font-extrabold tracking-[0.08em] uppercase text-stone-400 whitespace-nowrap border-b-2 border-stone-100 bg-stone-50/60">
+    <th className="px-5 py-3.5 text-left text-xs font-bold tracking-wide uppercase text-gray-400 whitespace-nowrap border-b-2 border-gray-100 bg-gray-50/60">
       {children}
     </th>
   );
@@ -87,46 +87,46 @@ function TriageRow({ payment, index, onAllocate }: {
   }, [selected, saveState, onAllocate, payment.id]);
 
   const rowBg =
-    saveState === "saved" ? "bg-emerald-50" :
-    index % 2 === 0       ? "bg-white hover:bg-stone-50/70" :
-                            "bg-stone-50/40 hover:bg-stone-100/50";
+    saveState === "saved" ? "bg-green-50" :
+    index % 2 === 0       ? "bg-white hover:bg-gray-50/70" :
+                            "bg-gray-50/40 hover:bg-gray-100/50";
 
   return (
-    <tr className={`border-b border-stone-100 transition-colors duration-300 ${rowBg}`}>
-      <td className="px-5 py-3.5 whitespace-nowrap">
-        <p className="text-[12px] font-medium text-stone-700">
+    <tr className={`border-b border-gray-100 transition-colors duration-300 ${rowBg}`}>
+      <td className="px-5 py-4 whitespace-nowrap">
+        <p className="text-sm font-medium text-gray-700">
           {new Date(payment.receivedAt).toLocaleDateString("en-KE", { day: "numeric", month: "short", year: "numeric" })}
         </p>
-        <p className="text-[10px] text-stone-400 mt-0.5">
+        <p className="text-xs text-gray-400 mt-0.5">
           {new Date(payment.receivedAt).toLocaleTimeString("en-KE", { hour: "2-digit", minute: "2-digit" })}
         </p>
       </td>
-      <td className="px-5 py-3.5">
-        <span className="flex items-center gap-1.5 font-mono text-[12px] text-stone-600">
-          <IC.Phone className="size-3 shrink-0 text-stone-400" />
+      <td className="px-5 py-4">
+        <span className="flex items-center gap-1.5 font-mono text-sm text-gray-600">
+          <IC.Phone className="size-3.5 shrink-0 text-gray-400" />
           {payment.phone}
         </span>
       </td>
-      <td className="px-5 py-3.5">
-        <span className="font-bold font-mono text-[14px] text-stone-800">{fmt(payment.amount)}</span>
+      <td className="px-5 py-4">
+        <span className="font-bold font-mono text-base text-gray-800">{fmt(payment.amount)}</span>
       </td>
-      <td className="px-5 py-3.5">
-        <code className="text-[11px] font-semibold bg-stone-100 text-stone-500 px-2 py-1 rounded-md">
+      <td className="px-5 py-4">
+        <code className="text-xs font-semibold bg-gray-100 text-gray-500 px-2.5 py-1 rounded-lg">
           {payment.mpesaRef}
         </code>
       </td>
-      <td className="px-5 py-3.5">
+      <td className="px-5 py-4">
         <ReasonBadge reason={payment.reason} />
       </td>
-      <td className="px-5 py-3.5">
+      <td className="px-5 py-4">
         <select
           value={selected}
           onChange={(e) => setSelected(e.target.value)}
           disabled={saveState !== "idle"}
-          className={`min-w-[170px] rounded-lg border px-3 py-1.5 text-[12px] font-medium bg-white outline-none cursor-pointer
-            focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition-colors
+          className={`min-w-[180px] rounded-xl border px-3 py-2.5 text-sm font-medium bg-white outline-none cursor-pointer
+            focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors
             disabled:opacity-60 disabled:cursor-not-allowed
-            ${selected ? "border-sky-300 text-stone-800" : "border-stone-200 text-stone-400"}`}
+            ${selected ? "border-[#00A551] text-gray-800" : "border-gray-200 text-gray-400"}`}
         >
           <option value="" disabled>Select child…</option>
           {CHILDREN.map((c) => (
@@ -134,19 +134,19 @@ function TriageRow({ payment, index, onAllocate }: {
           ))}
         </select>
       </td>
-      <td className="px-5 py-3.5">
+      <td className="px-5 py-4">
         <button
           onClick={handleSave}
           disabled={!selected || saveState !== "idle"}
-          className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-[12px] font-bold transition-all duration-150 whitespace-nowrap
-            ${saveState === "saved"  ? "bg-emerald-100 text-emerald-700 cursor-default" :
-              saveState === "saving" ? "bg-sky-100 text-sky-600 cursor-wait" :
-              selected               ? "bg-sky-600 text-white hover:bg-sky-700 active:scale-[0.97]" :
-                                       "bg-stone-100 text-stone-300 cursor-not-allowed"}`}
+          className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-150 whitespace-nowrap
+            ${saveState === "saved"  ? "bg-green-100 text-[#00A551] cursor-default" :
+              saveState === "saving" ? "bg-green-50 text-[#00A551] cursor-wait" :
+              selected               ? "bg-[#00A551] text-white hover:bg-[#007A3C] active:scale-[0.97]" :
+                                       "bg-gray-100 text-gray-300 cursor-not-allowed"}`}
         >
-          {saveState === "saved"  ? <><IC.Check  className="size-3.5" /> Saved</>   :
-           saveState === "saving" ? <><IC.Loader className="size-3.5 animate-spin" /> Saving…</> :
-                                    <><IC.Save   className="size-3.5" /> Save</>}
+          {saveState === "saved"  ? <><IC.Check  className="size-4" /> Saved</>   :
+           saveState === "saving" ? <><IC.Loader className="size-4 animate-spin" /> Saving…</> :
+                                    <><IC.Save   className="size-4" /> Save</>}
         </button>
       </td>
     </tr>
@@ -156,17 +156,17 @@ function TriageRow({ payment, index, onAllocate }: {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-16 md:py-24 px-6 text-center">
-      <div className="size-16 md:size-20 rounded-full bg-emerald-50 flex items-center justify-center mb-4 md:mb-5">
-        <div className="size-10 md:size-12 rounded-full bg-emerald-100 flex items-center justify-center">
-          <IC.CheckCircle className="size-6 md:size-7 text-emerald-500" />
+      <div className="size-20 rounded-full bg-green-50 flex items-center justify-center mb-5">
+        <div className="size-12 rounded-full bg-green-100 flex items-center justify-center">
+          <IC.CheckCircle className="size-7 text-[#00A551]" />
         </div>
       </div>
-      <h3 className="text-base md:text-lg font-bold text-stone-800 mb-2">All caught up!</h3>
-      <p className="text-sm text-stone-400 max-w-xs leading-relaxed">
+      <h3 className="text-lg font-bold text-gray-800 mb-2">All caught up!</h3>
+      <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
         No pending payments to allocate. The Smart Defaults system handled everything automatically.
       </p>
-      <div className="mt-5 flex items-center gap-2 text-[11px] text-emerald-600 font-semibold bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-full">
-        <IC.Check className="size-3.5" />
+      <div className="mt-5 flex items-center gap-2 text-sm text-[#00A551] font-semibold bg-green-50 border border-green-100 px-4 py-2.5 rounded-full">
+        <IC.Check className="size-4" />
         System running smoothly
       </div>
     </div>
@@ -184,19 +184,19 @@ function StatsBar({ payments }: { payments: TriagePayment[] }) {
   );
 
   const stats = [
-    { label: "Pending",    value: String(payments.length), icon: <IC.Alert  className="size-4 text-amber-500" />, color: "text-amber-700" },
-    { label: "Unallocated", value: fmt(totalAmount),        icon: <IC.Wallet className="size-4 text-sky-500"   />, color: "text-sky-700"   },
-    { label: "Oldest",     value: oldestDate,               icon: <IC.Clock  className="size-4 text-stone-400" />, color: "text-stone-600" },
+    { label: "Pending",     value: String(payments.length), icon: <IC.Alert  className="size-5 text-[#FF6B2B]" />, color: "text-[#FF6B2B]",  bg: "bg-orange-50" },
+    { label: "Unallocated", value: fmt(totalAmount),         icon: <IC.Wallet className="size-5 text-[#00A551]" />, color: "text-[#007A3C]", bg: "bg-green-50"  },
+    { label: "Oldest",      value: oldestDate,               icon: <IC.Clock  className="size-5 text-gray-400"  />, color: "text-gray-600",  bg: "bg-gray-50"   },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {stats.map((s) => (
-        <div key={s.label} className="bg-white border border-stone-200 rounded-xl px-4 md:px-5 py-3.5 md:py-4 flex items-center gap-3 shadow-sm">
-          <div className="size-9 rounded-lg bg-stone-50 flex items-center justify-center shrink-0">{s.icon}</div>
+        <div key={s.label} className="bg-white border border-gray-200 rounded-2xl px-5 py-4 flex items-center gap-4 shadow-card">
+          <div className={`size-11 rounded-xl flex items-center justify-center shrink-0 ${s.bg}`}>{s.icon}</div>
           <div>
-            <p className="text-[10px] font-extrabold tracking-[0.08em] uppercase text-stone-400">{s.label}</p>
-            <p className={`text-lg md:text-xl font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-gray-400">{s.label}</p>
+            <p className={`text-xl font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</p>
           </div>
         </div>
       ))}
@@ -214,22 +214,22 @@ export default function TriageQueuePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2.5 mb-1">
-            <div className="size-8 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
-              <IC.Alert className="size-4 text-amber-600" />
+          <div className="flex items-center gap-3 mb-1">
+            <div className="size-10 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+              <IC.Alert className="size-5 text-[#FF6B2B]" />
             </div>
-            <h1 className="text-[18px] md:text-[22px] font-bold text-stone-800 tracking-tight">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">
               Action Required
             </h1>
           </div>
-          <p className="text-[13px] text-stone-400 ml-[42px] leading-relaxed">
+          <p className="text-sm text-gray-500 ml-[52px] leading-relaxed">
             Unallocated payments — assign each to a child and hit{" "}
-            <span className="font-semibold text-stone-500">Save</span>.
+            <span className="font-semibold text-gray-600">Save</span>.
           </p>
         </div>
         {payments.length > 0 && (
-          <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 text-[12px] font-bold px-4 py-2 rounded-full shrink-0 self-start">
-            <span className="size-2 rounded-full bg-amber-400 animate-pulse" />
+          <div className="flex items-center gap-2 bg-orange-50 border border-orange-200 text-[#E05520] text-sm font-bold px-4 py-2.5 rounded-full shrink-0 self-start">
+            <span className="size-2 rounded-full bg-[#FF6B2B] animate-pulse" />
             {payments.length} pending
           </div>
         )}
@@ -237,14 +237,14 @@ export default function TriageQueuePage() {
 
       <StatsBar payments={payments} />
 
-      <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-        <div className="px-4 md:px-5 py-4 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
+        <div className="px-5 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h2 className="text-[14px] font-bold text-stone-800">Unallocated Payments</h2>
-            <p className="text-[11px] text-stone-400 mt-0.5">Each row is a payment the system could not confidently route</p>
+            <h2 className="text-base font-bold text-gray-900">Unallocated Payments</h2>
+            <p className="text-sm text-gray-400 mt-0.5">Each row is a payment the system could not confidently route</p>
           </div>
-          <div className="flex items-center gap-1.5 text-[11px] text-stone-400">
-            <IC.Info className="size-3.5 shrink-0" />
+          <div className="flex items-center gap-1.5 text-sm text-gray-400">
+            <IC.Info className="size-4 shrink-0" />
             <span>Changes save immediately</span>
           </div>
         </div>
@@ -275,11 +275,11 @@ export default function TriageQueuePage() {
         )}
 
         {payments.length > 0 && (
-          <div className="px-4 md:px-5 py-3 border-t border-stone-100 bg-stone-50/50 flex items-start sm:items-center gap-2">
-            <IC.Info className="size-3.5 text-stone-300 shrink-0 mt-0.5 sm:mt-0" />
-            <p className="text-[11px] text-stone-400">
-              <span className="font-semibold text-stone-500">Tip:</span> Unknown numbers can be linked to parents in the{" "}
-              <span className="font-semibold text-sky-600">Children registry</span>.
+          <div className="px-5 py-3.5 border-t border-gray-100 bg-gray-50/50 flex items-start sm:items-center gap-2">
+            <IC.Info className="size-4 text-gray-300 shrink-0 mt-0.5 sm:mt-0" />
+            <p className="text-sm text-gray-400">
+              <span className="font-semibold text-gray-500">Tip:</span> Unknown numbers can be linked to parents in the{" "}
+              <span className="font-semibold text-[#00A551]">Children registry</span>.
             </p>
           </div>
         )}

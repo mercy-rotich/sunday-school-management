@@ -73,7 +73,7 @@ function genId(): string {
 // ─── Age Pill ─────────────────────────────────────────────────────────────────
 function AgePill({ age }: { age: number }) {
   return (
-    <span className="inline-flex items-center text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200 px-1.5 py-0.5 rounded-full ml-1.5 whitespace-nowrap">
+    <span className="inline-flex items-center text-xs font-bold bg-green-50 text-[#007A3C] border border-green-200 px-2 py-0.5 rounded-full ml-1.5 whitespace-nowrap">
       {age}y
     </span>
   );
@@ -95,28 +95,27 @@ function ActionMenu({
     <div className="relative inline-block">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="size-8 rounded-lg flex items-center justify-center text-stone-400 hover:text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer border-0 bg-transparent"
+        className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
       >
-        <IC.MoreHorizontal className="size-4" />
+        <IC.MoreHorizontal className="size-5" />
       </button>
       {open && (
         <>
-          {/* backdrop */}
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-9 z-20 w-36 bg-white border border-stone-200 rounded-xl shadow-lg overflow-hidden">
+          <div className="absolute right-0 top-11 z-20 w-40 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
             <button
               onClick={() => { onEdit(child); setOpen(false); }}
-              className="flex items-center gap-2.5 w-full px-3 py-2.5 text-[12px] font-medium text-stone-700 hover:bg-stone-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
+              className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
             >
-              <IC.Edit className="size-3.5 text-stone-400" />
+              <IC.Edit className="size-4 text-gray-400" />
               Edit Child
             </button>
-            <div className="h-px bg-stone-100 mx-2" />
+            <div className="h-px bg-gray-100 mx-3" />
             <button
               onClick={() => { onDelete(child.id); setOpen(false); }}
-              className="flex items-center gap-2.5 w-full px-3 py-2.5 text-[12px] font-medium text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
+              className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
             >
-              <IC.Trash className="size-3.5" />
+              <IC.Trash className="size-4" />
               Delete
             </button>
           </div>
@@ -144,28 +143,26 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
     form.parentPhone.trim();
 
   const inputCls =
-    "w-full border border-stone-200 rounded-lg px-3 py-2 text-[13px] text-stone-800 bg-white outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition-colors placeholder:text-stone-300";
-  const labelCls = "block text-[11px] font-bold tracking-wide uppercase text-stone-500 mb-1.5";
+    "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 bg-white outline-none focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors placeholder:text-gray-300";
+  const labelCls = "block text-xs font-bold tracking-wide uppercase text-gray-500 mb-2";
 
   return (
-    /* Backdrop */
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-      {/* Modal */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
 
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-stone-100">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="size-8 rounded-lg bg-sky-50 flex items-center justify-center">
+            <div className="size-10 rounded-xl bg-green-50 flex items-center justify-center">
               {mode === "add"
-                ? <IC.UserPlus className="size-4 text-sky-600" />
-                : <IC.Edit className="size-4 text-sky-600" />}
+                ? <IC.UserPlus className="size-5 text-[#00A551]" />
+                : <IC.Edit className="size-5 text-[#00A551]" />}
             </div>
             <div>
-              <h2 className="text-[15px] font-bold text-stone-800">
+              <h2 className="text-base font-bold text-gray-900">
                 {mode === "add" ? "Add New Child" : "Edit Child"}
               </h2>
-              <p className="text-[11px] text-stone-400 mt-0.5">
+              <p className="text-sm text-gray-400 mt-0.5">
                 {mode === "add"
                   ? "Register a new child in the directory"
                   : "Update the child's information"}
@@ -174,15 +171,14 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="size-8 rounded-lg flex items-center justify-center text-stone-400 hover:text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer border-0 bg-transparent"
+            className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
           >
-            <IC.X className="size-4" />
+            <IC.X className="size-5" />
           </button>
         </div>
 
         {/* Body */}
         <div className="px-6 py-5 flex flex-col gap-4">
-          {/* Name row */}
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>First Name</label>
@@ -204,7 +200,6 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
             </div>
           </div>
 
-          {/* DOB */}
           <div>
             <label className={labelCls}>Date of Birth</label>
             <input
@@ -215,14 +210,12 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
             />
           </div>
 
-          {/* Divider */}
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-stone-100" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-stone-300">Parent / Guardian</span>
-            <div className="flex-1 h-px bg-stone-100" />
+            <div className="flex-1 h-px bg-gray-100" />
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-300">Parent / Guardian</span>
+            <div className="flex-1 h-px bg-gray-100" />
           </div>
 
-          {/* Parent name */}
           <div>
             <label className={labelCls}>Parent Name</label>
             <input
@@ -233,11 +226,10 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
             />
           </div>
 
-          {/* Parent phone */}
           <div>
             <label className={labelCls}>
               Parent Phone{" "}
-              <span className="text-sky-500 normal-case font-normal tracking-normal">
+              <span className="text-[#00A551] normal-case font-normal tracking-normal">
                 (M-Pesa matching key)
               </span>
             </label>
@@ -247,27 +239,27 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
               value={form.parentPhone}
               onChange={(e) => onChange("parentPhone", e.target.value)}
             />
-            <p className="text-[10px] text-stone-400 mt-1.5">
+            <p className="text-xs text-gray-400 mt-1.5">
               This number must match the M-Pesa sender phone exactly.
             </p>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-stone-100 bg-stone-50/50">
+        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg text-[13px] font-semibold text-stone-600 bg-white border border-stone-200 hover:border-stone-300 hover:bg-stone-50 transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             onClick={onSave}
             disabled={!isValid}
-            className={`px-5 py-2 rounded-lg text-[13px] font-bold transition-all
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all
               ${isValid
-                ? "bg-sky-600 text-white hover:bg-sky-700 active:scale-[0.98] cursor-pointer"
-                : "bg-stone-100 text-stone-300 cursor-not-allowed"}`}
+                ? "bg-[#00A551] text-white hover:bg-[#007A3C] active:scale-[0.98] cursor-pointer"
+                : "bg-gray-100 text-gray-300 cursor-not-allowed"}`}
           >
             {mode === "add" ? "Add Child" : "Save Changes"}
           </button>
@@ -288,16 +280,16 @@ function DeleteModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden">
         <div className="px-6 pt-6 pb-4 text-center">
-          <div className="size-14 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
-            <IC.Trash className="size-6 text-rose-500" />
+          <div className="size-16 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
+            <IC.Trash className="size-7 text-rose-500" />
           </div>
-          <h2 className="text-[16px] font-bold text-stone-800 mb-2">Remove Child?</h2>
-          <p className="text-[13px] text-stone-500 leading-relaxed">
+          <h2 className="text-lg font-bold text-gray-800 mb-2">Remove Child?</h2>
+          <p className="text-sm text-gray-500 leading-relaxed">
             Are you sure you want to remove{" "}
-            <span className="font-semibold text-stone-700">
+            <span className="font-semibold text-gray-700">
               {child.firstName} {child.lastName}
             </span>{" "}
             from the directory? This cannot be undone.
@@ -306,13 +298,13 @@ function DeleteModal({
         <div className="flex gap-3 px-6 pb-6">
           <button
             onClick={onClose}
-            className="flex-1 py-2.5 rounded-lg text-[13px] font-semibold text-stone-600 bg-white border border-stone-200 hover:bg-stone-50 transition-colors cursor-pointer"
+            className="flex-1 py-3 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
-            className="flex-1 py-2.5 rounded-lg text-[13px] font-bold text-white bg-rose-500 hover:bg-rose-600 transition-colors cursor-pointer"
+            className="flex-1 py-3 rounded-xl text-sm font-bold text-white bg-rose-500 hover:bg-rose-600 transition-colors cursor-pointer"
           >
             Yes, Remove
           </button>
@@ -335,27 +327,27 @@ function Pagination({
   const pages = Array.from({ length: total }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-between px-5 py-3.5 border-t border-stone-100 bg-stone-50/50">
-      <p className="text-[11px] text-stone-400 hidden sm:block">
+    <div className="flex items-center justify-between px-5 py-4 border-t border-gray-100 bg-gray-50/50">
+      <p className="text-sm text-gray-400 hidden sm:block">
         Page {current} of {total}
       </p>
       <div className="flex items-center gap-1 mx-auto sm:mx-0">
         <button
           onClick={() => onChange(current - 1)}
           disabled={current === 1}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[12px] font-medium text-stone-500 hover:bg-stone-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
+          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
         >
-          <IC.ChevL className="size-3.5" /> Prev
+          <IC.ChevL className="size-4" /> Prev
         </button>
 
         {pages.map((p) => (
           <button
             key={p}
             onClick={() => onChange(p)}
-            className={`size-8 rounded-lg text-[12px] font-bold transition-colors border-0 cursor-pointer
+            className={`size-9 rounded-xl text-sm font-bold transition-colors border-0 cursor-pointer
               ${p === current
-                ? "bg-sky-600 text-white"
-                : "text-stone-500 hover:bg-stone-100 bg-transparent"}`}
+                ? "bg-[#00A551] text-white"
+                : "text-gray-500 hover:bg-gray-100 bg-transparent"}`}
           >
             {p}
           </button>
@@ -364,9 +356,9 @@ function Pagination({
         <button
           onClick={() => onChange(current + 1)}
           disabled={current === total}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[12px] font-medium text-stone-500 hover:bg-stone-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
+          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
         >
-          Next <IC.ChevR className="size-3.5" />
+          Next <IC.ChevR className="size-4" />
         </button>
       </div>
     </div>
@@ -386,11 +378,11 @@ function ChildrenTable({
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center px-6">
-        <div className="size-16 rounded-full bg-stone-50 flex items-center justify-center mb-4">
-          <IC.Users className="size-7 text-stone-300" />
+        <div className="size-16 rounded-full bg-gray-50 flex items-center justify-center mb-4">
+          <IC.Users className="size-8 text-gray-300" />
         </div>
-        <p className="text-[14px] font-semibold text-stone-500">No children found</p>
-        <p className="text-[12px] text-stone-400 mt-1">Try adjusting your search.</p>
+        <p className="text-base font-semibold text-gray-500">No children found</p>
+        <p className="text-sm text-gray-400 mt-1">Try adjusting your search.</p>
       </div>
     );
   }
@@ -400,10 +392,10 @@ function ChildrenTable({
       <table className="w-full border-collapse min-w-[640px]">
         <thead>
           <tr>
-            {["Child's Name", "Date of Birth", "Parent / Guardian", "Phone Number (M-Pesa key)", "Actions"].map((h) => (
+            {["Child's Name", "Date of Birth", "Parent / Guardian", "Phone (M-Pesa key)", "Actions"].map((h) => (
               <th
                 key={h}
-                className="px-5 py-3 text-left text-[10px] font-extrabold tracking-[0.08em] uppercase text-stone-400 whitespace-nowrap border-b-2 border-stone-100 bg-stone-50/60"
+                className="px-5 py-3.5 text-left text-xs font-bold tracking-wide uppercase text-gray-400 whitespace-nowrap border-b-2 border-gray-100 bg-gray-50/60"
               >
                 {h}
               </th>
@@ -416,45 +408,45 @@ function ChildrenTable({
             return (
               <tr
                 key={child.id}
-                className={`border-b border-stone-100 transition-colors ${
-                  i % 2 === 0 ? "bg-white hover:bg-stone-50/60" : "bg-stone-50/30 hover:bg-stone-100/40"
+                className={`border-b border-gray-100 transition-colors ${
+                  i % 2 === 0 ? "bg-white hover:bg-gray-50/60" : "bg-gray-50/30 hover:bg-gray-100/40"
                 }`}
               >
                 {/* Name */}
-                <td className="px-5 py-3.5">
+                <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="size-8 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center text-white text-[11px] font-bold shrink-0">
+                    <div className="size-9 rounded-full bg-gradient-to-br from-[#00A551] to-[#007A3C] flex items-center justify-center text-white text-xs font-bold shrink-0">
                       {child.firstName[0]}{child.lastName[0]}
                     </div>
-                    <span className="text-[13px] font-semibold text-stone-800">
+                    <span className="text-sm font-semibold text-gray-800">
                       {child.firstName} {child.lastName}
                     </span>
                   </div>
                 </td>
 
                 {/* DOB + Age */}
-                <td className="px-5 py-3.5 whitespace-nowrap">
-                  <span className="text-[12px] text-stone-600">{formatDob(child.dateOfBirth)}</span>
+                <td className="px-5 py-4 whitespace-nowrap">
+                  <span className="text-sm text-gray-600">{formatDob(child.dateOfBirth)}</span>
                   <AgePill age={age} />
                 </td>
 
                 {/* Parent */}
-                <td className="px-5 py-3.5">
-                  <span className="text-[13px] text-stone-700">{child.parentName}</span>
+                <td className="px-5 py-4">
+                  <span className="text-sm text-gray-700">{child.parentName}</span>
                 </td>
 
-                {/* Phone — highlighted as M-Pesa key */}
-                <td className="px-5 py-3.5">
+                {/* Phone — M-Pesa key */}
+                <td className="px-5 py-4">
                   <div className="flex items-center gap-1.5">
-                    <IC.Phone className="size-3 text-sky-500 shrink-0" />
-                    <span className="font-mono text-[12px] font-semibold text-sky-700 bg-sky-50 border border-sky-100 px-2 py-0.5 rounded-md">
+                    <IC.Phone className="size-4 text-[#00A551] shrink-0" />
+                    <span className="font-mono text-xs font-semibold text-[#00A551] bg-green-50 border border-green-100 px-2.5 py-1 rounded-lg">
                       {child.parentPhone}
                     </span>
                   </div>
                 </td>
 
                 {/* Actions */}
-                <td className="px-5 py-3.5">
+                <td className="px-5 py-4">
                   <ActionMenu child={child} onEdit={onEdit} onDelete={onDelete} />
                 </td>
               </tr>
@@ -477,7 +469,6 @@ export default function ChildrenPage() {
   const [form,      setForm]      = useState<FormState>(BLANK_FORM);
   const [deleteTarget, setDeleteTarget] = useState<Child | null>(null);
 
-  // Filtered list
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
     if (!q) return children;
@@ -489,29 +480,24 @@ export default function ChildrenPage() {
     );
   }, [children, query]);
 
-  // Paginated slice
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage   = Math.min(page, totalPages);
   const pageSlice  = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
-  // Reset page on search
   const handleSearch = useCallback((q: string) => {
     setQuery(q);
     setPage(1);
   }, []);
 
-  // Form field update
   const handleFormChange = useCallback((field: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   }, []);
 
-  // Open add modal
   const openAdd = useCallback(() => {
     setForm(BLANK_FORM);
     setModal({ open: true, mode: "add", editing: null });
   }, []);
 
-  // Open edit modal
   const openEdit = useCallback((child: Child) => {
     setForm({
       firstName:   child.firstName,
@@ -523,7 +509,6 @@ export default function ChildrenPage() {
     setModal({ open: true, mode: "edit", editing: child });
   }, []);
 
-  // Save (add or edit)
   const handleSave = useCallback(() => {
     if (modal.mode === "add") {
       const newChild: Child = { id: genId(), ...form };
@@ -537,7 +522,6 @@ export default function ChildrenPage() {
     setForm(BLANK_FORM);
   }, [modal, form]);
 
-  // Delete
   const handleDelete = useCallback((id: string) => {
     setChildren((prev) => prev.filter((c) => c.id !== id));
     setDeleteTarget(null);
@@ -549,63 +533,62 @@ export default function ChildrenPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2.5 mb-1">
-            <div className="size-8 rounded-lg bg-sky-100 flex items-center justify-center shrink-0">
-              <IC.Users className="size-4 text-sky-600" />
+          <div className="flex items-center gap-3 mb-1">
+            <div className="size-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+              <IC.Users className="size-5 text-[#00A551]" />
             </div>
-            <h1 className="text-[20px] sm:text-[22px] font-bold text-stone-800 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
               Children Directory
             </h1>
           </div>
-          <p className="text-[13px] text-stone-400 ml-[42px]">
+          <p className="text-sm text-gray-500 ml-[52px]">
             {children.length} registered children · M-Pesa auto-allocation relies on this data
           </p>
         </div>
 
         <button
           onClick={openAdd}
-          className="flex items-center gap-2 px-4 py-2.5 bg-sky-600 text-white text-[13px] font-bold rounded-xl hover:bg-sky-700 active:scale-[0.98] transition-all cursor-pointer shrink-0 self-start sm:self-auto"
+          className="flex items-center gap-2 px-5 py-3 bg-[#00A551] text-white text-sm font-bold rounded-xl hover:bg-[#007A3C] active:scale-[0.98] transition-all cursor-pointer shrink-0 self-start sm:self-auto shadow-sm"
         >
-          <IC.Plus className="size-4" />
-          <span>Add New Child</span>
+          <IC.Plus className="size-5" />
+          Add New Child
         </button>
       </div>
 
       {/* Search + Stats row */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <div className="relative flex-1">
-          <IC.Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-stone-400" />
+          <IC.Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
           <input
             type="text"
             placeholder="Search by name, parent, or phone number…"
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-stone-200 bg-white text-[13px] text-stone-700 outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 transition-colors placeholder:text-stone-300"
+            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 outline-none focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors placeholder:text-gray-300"
           />
         </div>
-        <div className="flex items-center gap-2 text-[12px] text-stone-400 bg-white border border-stone-200 rounded-xl px-4 py-2.5 shrink-0">
-          <IC.Filter className="size-3.5" />
+        <div className="flex items-center gap-2 text-sm text-gray-400 bg-white border border-gray-200 rounded-xl px-4 py-3 shrink-0">
+          <IC.Filter className="size-4" />
           {filtered.length} result{filtered.length !== 1 ? "s" : ""}
         </div>
       </div>
 
       {/* Main Card */}
-      <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
         {/* Card Header */}
-        <div className="px-5 py-4 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="px-5 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h2 className="text-[14px] font-bold text-stone-800">Registered Children</h2>
-            <p className="text-[11px] text-stone-400 mt-0.5">
+            <h2 className="text-base font-bold text-gray-900">Registered Children</h2>
+            <p className="text-sm text-gray-400 mt-0.5">
               Phone numbers are used as the M-Pesa matching key for Smart Defaults
             </p>
           </div>
-          <div className="flex items-center gap-1.5 text-[11px] text-stone-400">
-            <IC.Info className="size-3.5 shrink-0" />
+          <div className="flex items-center gap-1.5 text-sm text-gray-400">
+            <IC.Info className="size-4 shrink-0" />
             <span>Showing {pageSlice.length} of {filtered.length}</span>
           </div>
         </div>
 
-        {/* Table */}
         <ChildrenTable
           items={pageSlice}
           onEdit={openEdit}
@@ -615,13 +598,11 @@ export default function ChildrenPage() {
           }}
         />
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <Pagination current={safePage} total={totalPages} onChange={setPage} />
         )}
       </div>
 
-      {/* Add / Edit Modal */}
       {modal.open && (
         <ChildModal
           mode={modal.mode}
@@ -632,7 +613,6 @@ export default function ChildrenPage() {
         />
       )}
 
-      {/* Delete Confirm Modal */}
       {deleteTarget && (
         <DeleteModal
           child={deleteTarget}

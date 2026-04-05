@@ -11,15 +11,15 @@ export default function BirthdayFundPage() {
 
       {/* Page Header */}
       <div>
-        <div className="flex items-center gap-2.5 mb-1">
-          <div className="size-8 rounded-lg bg-violet-100 flex items-center justify-center shrink-0">
-            <IC.Cake className="size-4 text-violet-600" />
+        <div className="flex items-center gap-3 mb-1">
+          <div className="size-10 rounded-xl bg-[#FF6B2B]/10 flex items-center justify-center shrink-0">
+            <IC.Cake className="size-5 text-[#FF6B2B]" />
           </div>
-          <h1 className="text-[20px] md:text-[22px] font-bold text-stone-800 tracking-tight">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900">
             Birthday Fund Management
           </h1>
         </div>
-        <p className="text-[13px] text-stone-400 ml-[42px]">
+        <p className="text-sm text-gray-500 ml-[52px]">
           Automated BDAY contributions — parents text using the reference &quot;BDAY&quot; on the 1st of each month
         </p>
       </div>
@@ -29,11 +29,9 @@ export default function BirthdayFundPage() {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* Birthdays — takes 2 of 3 cols on desktop */}
         <div className="lg:col-span-2">
           <MonthlyBirthdays />
         </div>
-        {/* Recent Deposits */}
         <div className="lg:col-span-1">
           <RecentBdayDeposits />
         </div>

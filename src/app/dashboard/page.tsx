@@ -26,21 +26,21 @@ export default function DashboardPage() {
           value={dashLoading ? "—" : fmt(dash!.totalGeneral)}
           sub="All allocated payments · July 2025"
           variant="default"
-          icon={<IC.Trend className="size-4" />}
+          icon={<IC.Trend className="size-5" />}
         />
         <MetricCard
           label="Birthday Fund Balance"
           value={dashLoading ? "—" : fmt(dash!.birthdayFund)}
           sub="BDAY reference payments · auto-routed"
           variant="birthday"
-          icon={<IC.Gift className="size-4" />}
+          icon={<IC.Gift className="size-5" />}
         />
         <MetricCard
           label="Action Required"
           value={`${liveCount} payment${liveCount !== 1 ? "s" : ""}`}
           sub="Awaiting manual allocation in triage"
           variant="alert"
-          icon={<IC.Alert className="size-4" />}
+          icon={<IC.Alert className="size-5" />}
         />
       </section>
 
@@ -48,32 +48,34 @@ export default function DashboardPage() {
       <section className="grid grid-cols-1 xl:grid-cols-[1fr_316px] gap-4">
 
         {/* Triage */}
-        <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-          <div className="px-4 md:px-5 py-4 border-b border-stone-100">
-            <div className="flex items-center gap-2.5">
-              <h2 className="text-sm font-bold text-stone-800">Triage Queue</h2>
-              {triage && triage.length > 0 && (
-                <span className="text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full">
-                  {triage.length} pending
-                </span>
-              )}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
+          <div className="px-4 md:px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2.5">
+                <h2 className="text-base font-bold text-gray-900">Triage Queue</h2>
+                {triage && triage.length > 0 && (
+                  <span className="badge-alert">
+                    {triage.length} pending
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-gray-500 mt-1">
+                Payments that couldn&apos;t be auto-allocated. Assign each to a child and save.
+              </p>
             </div>
-            <p className="text-[11px] text-stone-400 mt-0.5">
-              Payments the system couldn&apos;t auto-allocate. Assign each to a child and save.
-            </p>
           </div>
           <TriageTable payments={triage} onAllocate={allocate} isLoading={triageLoading} />
         </div>
 
         {/* Birthday Module */}
-        <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-          <div className="px-4 md:px-5 py-4 border-b border-stone-100 flex items-center gap-2.5">
-            <div className="size-7 rounded-lg bg-violet-50 flex items-center justify-center">
-              <IC.Cake className="size-4 text-violet-500" />
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
+          <div className="px-4 md:px-5 py-4 border-b border-gray-100 flex items-center gap-3">
+            <div className="size-9 rounded-xl bg-orange-50 flex items-center justify-center">
+              <IC.Cake className="size-5 text-[#FF6B2B]" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-stone-800 leading-none">Birthday Module</h2>
-              <p className="text-[10px] text-stone-400 mt-0.5">July 2025</p>
+              <h2 className="text-base font-bold text-gray-900 leading-none">Birthday Module</h2>
+              <p className="text-sm text-gray-500 mt-0.5">July 2025</p>
             </div>
           </div>
           <div className="p-4">
@@ -83,30 +85,25 @@ export default function DashboardPage() {
       </section>
 
       {/* Activity Feed */}
-      <section className="bg-white rounded-xl border border-stone-200 shadow-sm px-4 md:px-5 py-4">
-        <div className="flex items-center gap-2 mb-3">
-          <IC.Activity className="size-4 text-sky-500 shrink-0" />
-          <h2 className="text-sm font-bold text-stone-800">Recent Activity</h2>
-          <span className="text-stone-300 text-xs hidden sm:inline">
+      <section className="bg-white rounded-2xl border border-gray-200 shadow-card px-4 md:px-5 py-4">
+        <div className="flex items-center gap-2 mb-4">
+          <IC.Activity className="size-5 text-[#00A551] shrink-0" />
+          <h2 className="text-base font-bold text-gray-900">Recent Activity</h2>
+          <span className="text-gray-400 text-sm hidden sm:inline">
             · Latest automated &amp; manual events
           </span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col divide-y divide-gray-50">
           {dashLoading
-            ? [1, 2, 3].map((i) => <Skeleton key={i} className="h-7 mb-2" />)
-            : dash!.activity.map((item, i) => (
-              <div
-                key={item.id}
-                className={`flex items-start sm:items-center gap-3 py-2.5 ${
-                  i < dash!.activity.length - 1 ? "border-b border-stone-50" : ""
-                }`}
-              >
-                <span className={`size-2 rounded-full shrink-0 mt-1.5 sm:mt-0 ${
-                  item.type === "success"  ? "bg-emerald-400" :
-                  item.type === "birthday" ? "bg-violet-400"  : "bg-amber-400"
+            ? [1, 2, 3].map((i) => <Skeleton key={i} className="h-10 my-1" />)
+            : dash!.activity.map((item) => (
+              <div key={item.id} className="flex items-start sm:items-center gap-3 py-3">
+                <span className={`size-2.5 rounded-full shrink-0 mt-1 sm:mt-0 ${
+                  item.type === "success"  ? "bg-[#00A551]" :
+                  item.type === "birthday" ? "bg-[#FF6B2B]" : "bg-amber-400"
                 }`} />
-                <span className="flex-1 text-[12px] text-stone-500">{item.desc}</span>
-                <span className="text-[11px] text-stone-300 shrink-0">{item.time}</span>
+                <span className="flex-1 text-sm text-gray-600">{item.desc}</span>
+                <span className="text-sm text-gray-400 shrink-0">{item.time}</span>
               </div>
             ))
           }

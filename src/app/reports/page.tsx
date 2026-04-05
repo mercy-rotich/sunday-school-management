@@ -11,15 +11,15 @@ export default function ReportsPage() {
 
       {/* Page Header */}
       <div>
-        <div className="flex items-center gap-2.5 mb-1">
-          <div className="size-8 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-            <IC.BarChart className="size-4 text-blue-600" />
+        <div className="flex items-center gap-3 mb-1">
+          <div className="size-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+            <IC.BarChart className="size-5 text-[#00A551]" />
           </div>
-          <h1 className="text-[20px] md:text-[22px] font-bold text-stone-800 tracking-tight">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900">
             Financial Reports
           </h1>
         </div>
-        <p className="text-[13px] text-stone-400 ml-[42px]">
+        <p className="text-sm text-gray-500 ml-[52px]">
           Overview of expenses and monthly financial breakdown
         </p>
       </div>

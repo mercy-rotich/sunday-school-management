@@ -26,43 +26,43 @@ export function RecentBdayDeposits() {
   const total = MOCK_DEPOSITS.reduce((s, d) => s + d.amount, 0);
 
   return (
-    <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden h-full flex flex-col">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden h-full flex flex-col">
 
       {/* Header */}
-      <div className="px-5 py-4 border-b border-stone-100 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
         <div>
-          <h2 className="text-[14px] font-bold text-stone-800">Recent BDAY Deposits</h2>
-          <p className="text-[11px] text-stone-400 mt-0.5">
+          <h2 className="text-base font-bold text-gray-900">Recent BDAY Deposits</h2>
+          <p className="text-sm text-gray-500 mt-0.5">
             {MOCK_DEPOSITS.length} deposits · {fmt(total)} total
           </p>
         </div>
-        <div className="size-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-          <IC.ArrowRight className="size-4 text-emerald-500 rotate-[225deg]" />
+        <div className="size-9 rounded-xl bg-green-50 flex items-center justify-center">
+          <IC.ArrowRight className="size-5 text-[#00A551] rotate-[225deg]" />
         </div>
       </div>
 
       {/* Deposit list */}
-      <div className="flex-1 flex flex-col divide-y divide-stone-50">
+      <div className="flex-1 flex flex-col divide-y divide-gray-50">
         {MOCK_DEPOSITS.map((deposit) => (
-          <div key={deposit.id} className="flex items-start gap-3 px-5 py-3.5 hover:bg-stone-50/60 transition-colors">
+          <div key={deposit.id} className="flex items-start gap-3 px-5 py-3.5 hover:bg-gray-50/60 transition-colors">
             {/* Icon */}
-            <div className="size-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5">
-              <IC.Check className="size-4 text-emerald-500" />
+            <div className="size-9 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5">
+              <IC.Check className="size-4 text-[#00A551]" />
             </div>
 
             {/* Details */}
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold text-stone-800 truncate">{deposit.childName}</p>
-              <p className="text-[10px] font-mono text-stone-400 mt-0.5 truncate">{deposit.senderPhone}</p>
-              <p className="text-[10px] text-stone-300 mt-0.5">{fmtT(deposit.receivedAt)}</p>
+              <p className="text-sm font-semibold text-gray-800 truncate">{deposit.childName}</p>
+              <p className="text-xs font-mono text-gray-400 mt-0.5 truncate">{deposit.senderPhone}</p>
+              <p className="text-xs text-gray-300 mt-0.5">{fmtT(deposit.receivedAt)}</p>
             </div>
 
             {/* Amount */}
             <div className="text-right shrink-0">
-              <p className="text-[14px] font-bold font-mono text-emerald-700">
+              <p className="text-sm font-bold font-mono text-[#00A551]">
                 +{fmt(deposit.amount)}
               </p>
-              <code className="text-[9px] bg-stone-100 text-stone-400 px-1.5 py-0.5 rounded mt-1 inline-block">
+              <code className="text-xs bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded mt-1 inline-block">
                 {deposit.mpesaRef}
               </code>
             </div>
@@ -71,11 +71,11 @@ export function RecentBdayDeposits() {
       </div>
 
       {/* Footer total */}
-      <div className="px-5 py-3 border-t border-stone-100 bg-emerald-50/50 flex items-center justify-between">
-        <span className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+      <div className="px-5 py-3 border-t border-gray-100 bg-green-50/50 flex items-center justify-between">
+        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
           This Month Total
         </span>
-        <span className="text-[15px] font-bold font-mono text-emerald-700">{fmt(total)}</span>
+        <span className="text-base font-bold font-mono text-[#00A551]">{fmt(total)}</span>
       </div>
     </div>
   );
