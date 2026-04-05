@@ -89,38 +89,22 @@ function ActionMenu({
   onEdit: (c: Child) => void;
   onDelete: (id: string) => void;
 }) {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="relative inline-block">
+    <div className="flex items-center gap-2">
       <button
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => onEdit(child)}
         className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
+        title="Edit child"
       >
-        <IC.MoreHorizontal className="size-5" />
+        <IC.Edit className="size-5" />
       </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-11 z-20 w-40 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
-            <button
-              onClick={() => { onEdit(child); setOpen(false); }}
-              className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
-            >
-              <IC.Edit className="size-4 text-gray-400" />
-              Edit Child
-            </button>
-            <div className="h-px bg-gray-100 mx-3" />
-            <button
-              onClick={() => { onDelete(child.id); setOpen(false); }}
-              className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer border-0 bg-transparent text-left"
-            >
-              <IC.Trash className="size-4" />
-              Delete
-            </button>
-          </div>
-        </>
-      )}
+      <button
+        onClick={() => onDelete(child.id)}
+        className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer border-0 bg-transparent"
+        title="Delete child"
+      >
+        <IC.Trash className="size-5" />
+      </button>
     </div>
   );
 }
