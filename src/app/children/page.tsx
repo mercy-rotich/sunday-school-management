@@ -73,7 +73,7 @@ function genId(): string {
 // ─── Age Pill ─────────────────────────────────────────────────────────────────
 function AgePill({ age }: { age: number }) {
   return (
-    <span className="inline-flex items-center text-xs font-bold bg-green-50 text-[#007A3C] border border-green-200 px-2 py-0.5 rounded-full ml-1.5 whitespace-nowrap">
+    <span className="inline-flex items-center text-xs font-bold bg-indigo-900/30 text-indigo-300 border border-indigo-900/50 px-2 py-0.5 rounded-full ml-1.5 whitespace-nowrap">
       {age}y
     </span>
   );
@@ -93,14 +93,14 @@ function ActionMenu({
     <div className="flex items-center gap-2">
       <button
         onClick={() => onEdit(child)}
-        className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
+        className="size-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors cursor-pointer border-0 bg-transparent"
         title="Edit child"
       >
         <IC.Edit className="size-5" />
       </button>
       <button
         onClick={() => onDelete(child.id)}
-        className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer border-0 bg-transparent"
+        className="size-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-rose-400 hover:bg-rose-900/20 transition-colors cursor-pointer border-0 bg-transparent"
         title="Delete child"
       >
         <IC.Trash className="size-5" />
@@ -127,26 +127,26 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
     form.parentPhone.trim();
 
   const inputCls =
-    "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 bg-white outline-none focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors placeholder:text-gray-300";
-  const labelCls = "block text-xs font-bold tracking-wide uppercase text-gray-500 mb-2";
+    "w-full border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 bg-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors placeholder:text-slate-500";
+  const labelCls = "block text-xs font-bold tracking-wide uppercase text-slate-200 mb-2";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md">
+      <div className="relative w-full max-w-lg bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
 
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-700 bg-gradient-to-r from-slate-700 to-slate-800">
           <div className="flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-green-50 flex items-center justify-center">
+            <div className="size-10 rounded-lg bg-indigo-900/40 flex items-center justify-center">
               {mode === "add"
-                ? <IC.UserPlus className="size-5 text-[#00A551]" />
-                : <IC.Edit className="size-5 text-[#00A551]" />}
+                ? <IC.UserPlus className="size-5 text-indigo-400" />
+                : <IC.Edit className="size-5 text-indigo-400" />}
             </div>
             <div>
-              <h2 className="text-base font-bold text-gray-900">
+              <h3 className="text-sm font-semibold text-white">
                 {mode === "add" ? "Add New Child" : "Edit Child"}
-              </h2>
-              <p className="text-sm text-gray-400 mt-0.5">
+              </h3>
+              <p className="text-sm text-slate-300 mt-0.5">
                 {mode === "add"
                   ? "Register a new child in the directory"
                   : "Update the child's information"}
@@ -155,7 +155,7 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="size-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer border-0 bg-transparent"
+            className="size-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-colors cursor-pointer border-0 bg-transparent"
           >
             <IC.X className="size-5" />
           </button>
@@ -195,9 +195,9 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-gray-100" />
-            <span className="text-xs font-bold uppercase tracking-widest text-gray-300">Parent / Guardian</span>
-            <div className="flex-1 h-px bg-gray-100" />
+            <div className="flex-1 h-px bg-slate-700" />
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-200">Parent / Guardian</span>
+            <div className="flex-1 h-px bg-slate-700" />
           </div>
 
           <div>
@@ -213,7 +213,7 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
           <div>
             <label className={labelCls}>
               Parent Phone{" "}
-              <span className="text-[#00A551] normal-case font-normal tracking-normal">
+              <span className="text-indigo-400 normal-case font-normal tracking-normal">
                 (M-Pesa matching key)
               </span>
             </label>
@@ -223,27 +223,27 @@ function ChildModal({ mode, form, onChange, onSave, onClose }: ModalProps) {
               value={form.parentPhone}
               onChange={(e) => onChange("parentPhone", e.target.value)}
             />
-            <p className="text-xs text-gray-400 mt-1.5">
+            <p className="text-xs text-slate-300 mt-1.5">
               This number must match the M-Pesa sender phone exactly.
             </p>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-700 bg-slate-900">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-400 bg-slate-800 border border-slate-600 hover:bg-slate-700 hover:text-slate-300 transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             onClick={onSave}
             disabled={!isValid}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all
+            className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all
               ${isValid
-                ? "bg-[#00A551] text-white hover:bg-[#007A3C] active:scale-[0.98] cursor-pointer"
-                : "bg-gray-100 text-gray-300 cursor-not-allowed"}`}
+                ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95 cursor-pointer"
+                : "bg-slate-700 text-slate-500 cursor-not-allowed"}`}
           >
             {mode === "add" ? "Add Child" : "Save Changes"}
           </button>
@@ -264,16 +264,16 @@ function DeleteModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
-      <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+      <div className="w-full max-w-sm bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800">
         <div className="px-6 pt-6 pb-4 text-center">
-          <div className="size-16 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
+          <div className="size-16 rounded-full bg-rose-900/20 flex items-center justify-center mx-auto mb-4">
             <IC.Trash className="size-7 text-rose-500" />
           </div>
-          <h2 className="text-lg font-bold text-gray-800 mb-2">Remove Child?</h2>
-          <p className="text-sm text-gray-500 leading-relaxed">
+          <h2 className="text-lg font-bold text-white mb-2">Remove Child?</h2>
+          <p className="text-sm text-slate-300 leading-relaxed">
             Are you sure you want to remove{" "}
-            <span className="font-semibold text-gray-700">
+            <span className="font-semibold text-slate-300">
               {child.firstName} {child.lastName}
             </span>{" "}
             from the directory? This cannot be undone.
@@ -282,7 +282,7 @@ function DeleteModal({
         <div className="flex gap-3 px-6 pb-6">
           <button
             onClick={onClose}
-            className="flex-1 py-3 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="flex-1 py-3 rounded-xl text-sm font-semibold text-slate-400 bg-slate-800 border border-slate-700 hover:bg-slate-800/80 transition-colors cursor-pointer"
           >
             Cancel
           </button>
@@ -311,15 +311,15 @@ function Pagination({
   const pages = Array.from({ length: total }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-between px-5 py-4 border-t border-gray-100 bg-gray-50/50">
-      <p className="text-sm text-gray-400 hidden sm:block">
+    <div className="flex items-center justify-between px-5 py-4 border-t border-slate-800 bg-slate-900/50">
+      <p className="text-sm text-slate-400 hidden sm:block">
         Page {current} of {total}
       </p>
       <div className="flex items-center gap-1 mx-auto sm:mx-0">
         <button
           onClick={() => onChange(current - 1)}
           disabled={current === 1}
-          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
+          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
         >
           <IC.ChevL className="size-4" /> Prev
         </button>
@@ -328,10 +328,10 @@ function Pagination({
           <button
             key={p}
             onClick={() => onChange(p)}
-            className={`size-9 rounded-xl text-sm font-bold transition-colors border-0 cursor-pointer
+            className={`size-9 rounded-lg text-sm font-semibold transition-colors border-0 cursor-pointer
               ${p === current
-                ? "bg-[#00A551] text-white"
-                : "text-gray-500 hover:bg-gray-100 bg-transparent"}`}
+                ? "bg-primary-600 text-white"
+                : "text-slate-400 hover:bg-slate-800 hover:text-slate-200 bg-transparent"}`}
           >
             {p}
           </button>
@@ -340,7 +340,7 @@ function Pagination({
         <button
           onClick={() => onChange(current + 1)}
           disabled={current === total}
-          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
+          className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border-0 bg-transparent cursor-pointer"
         >
           Next <IC.ChevR className="size-4" />
         </button>
@@ -362,11 +362,11 @@ function ChildrenTable({
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center px-6">
-        <div className="size-16 rounded-full bg-gray-50 flex items-center justify-center mb-4">
-          <IC.Users className="size-8 text-gray-300" />
+        <div className="size-16 rounded-full bg-slate-50 dark:bg-slate-900 flex items-center justify-center mb-4">
+          <IC.Users className="size-8 text-slate-300" />
         </div>
-        <p className="text-base font-semibold text-gray-500">No children found</p>
-        <p className="text-sm text-gray-400 mt-1">Try adjusting your search.</p>
+        <p className="text-base font-semibold text-slate-500">No children found</p>
+        <p className="text-sm text-slate-400 mt-1">Try adjusting your search.</p>
       </div>
     );
   }
@@ -379,7 +379,7 @@ function ChildrenTable({
             {["Child's Name", "Date of Birth", "Parent / Guardian", "Phone (M-Pesa key)", "Actions"].map((h) => (
               <th
                 key={h}
-                className="px-5 py-3.5 text-left text-xs font-bold tracking-wide uppercase text-gray-400 whitespace-nowrap border-b-2 border-gray-100 bg-gray-50/60"
+                className="px-5 py-3.5 text-left text-xs font-bold tracking-wide uppercase text-slate-200 whitespace-nowrap border-b-2 border-slate-800 bg-slate-900/60"
               >
                 {h}
               </th>
@@ -392,17 +392,17 @@ function ChildrenTable({
             return (
               <tr
                 key={child.id}
-                className={`border-b border-gray-100 transition-colors ${
-                  i % 2 === 0 ? "bg-white hover:bg-gray-50/60" : "bg-gray-50/30 hover:bg-gray-100/40"
+                className={`border-b border-slate-800 transition-colors ${
+                  i % 2 === 0 ? "bg-slate-900 hover:bg-slate-800/50" : "bg-slate-900/50 hover:bg-slate-800/30"
                 }`}
               >
                 {/* Name */}
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="size-9 rounded-full bg-gradient-to-br from-[#00A551] to-[#007A3C] flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    <div className="size-9 rounded-full bg-primary-600 dark:bg-primary-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
                       {child.firstName[0]}{child.lastName[0]}
                     </div>
-                    <span className="text-sm font-semibold text-gray-800">
+                    <span className="text-sm font-semibold text-slate-100">
                       {child.firstName} {child.lastName}
                     </span>
                   </div>
@@ -410,20 +410,20 @@ function ChildrenTable({
 
                 {/* DOB + Age */}
                 <td className="px-5 py-4 whitespace-nowrap">
-                  <span className="text-sm text-gray-600">{formatDob(child.dateOfBirth)}</span>
+                  <span className="text-sm text-slate-300">{formatDob(child.dateOfBirth)}</span>
                   <AgePill age={age} />
                 </td>
 
                 {/* Parent */}
                 <td className="px-5 py-4">
-                  <span className="text-sm text-gray-700">{child.parentName}</span>
+                  <span className="text-sm text-slate-300">{child.parentName}</span>
                 </td>
 
                 {/* Phone — M-Pesa key */}
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-1.5">
-                    <IC.Phone className="size-4 text-[#00A551] shrink-0" />
-                    <span className="font-mono text-xs font-semibold text-[#00A551] bg-green-50 border border-green-100 px-2.5 py-1 rounded-lg">
+                    <IC.Phone className="size-4 text-indigo-400 shrink-0" />
+                    <span className="font-mono text-xs font-semibold text-indigo-300 bg-indigo-900/20 border border-indigo-900/50 px-2.5 py-1 rounded-lg">
                       {child.parentPhone}
                     </span>
                   </div>
@@ -518,21 +518,21 @@ export default function ChildrenPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <div className="size-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-              <IC.Users className="size-5 text-[#00A551]" />
+            <div className="size-10 rounded-xl bg-indigo-900/30 flex items-center justify-center shrink-0">
+              <IC.Users className="size-5 text-indigo-400" />
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+            <h1 className="text-xl sm:text-2xl font-bold text-white">
               Children Directory
             </h1>
           </div>
-          <p className="text-sm text-gray-500 ml-[52px]">
+          <p className="text-sm text-slate-400 ml-[52px]">
             {children.length} registered children · M-Pesa auto-allocation relies on this data
           </p>
         </div>
 
         <button
           onClick={openAdd}
-          className="flex items-center gap-2 px-5 py-3 bg-[#00A551] text-white text-sm font-bold rounded-xl hover:bg-[#007A3C] active:scale-[0.98] transition-all cursor-pointer shrink-0 self-start sm:self-auto shadow-sm"
+          className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700 dark:hover:bg-primary-500 active:scale-95 transition-all cursor-pointer shrink-0 self-start sm:self-auto"
         >
           <IC.Plus className="size-5" />
           Add New Child
@@ -542,32 +542,32 @@ export default function ChildrenPage() {
       {/* Search + Stats row */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <div className="relative flex-1">
-          <IC.Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
+          <IC.Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
           <input
             type="text"
             placeholder="Search by name, parent, or phone number…"
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 outline-none focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors placeholder:text-gray-300"
+            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white dark:bg-slate-900 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-colors placeholder:text-slate-300"
           />
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-400 bg-white border border-gray-200 rounded-xl px-4 py-3 shrink-0">
+        <div className="flex items-center gap-2 text-sm text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 rounded-xl px-4 py-3 shrink-0">
           <IC.Filter className="size-4" />
           {filtered.length} result{filtered.length !== 1 ? "s" : ""}
         </div>
       </div>
 
       {/* Main Card */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-card overflow-hidden">
         {/* Card Header */}
-        <div className="px-5 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-slate-50 dark:bg-slate-900 dark:bg-slate-800/50">
           <div>
-            <h2 className="text-base font-bold text-gray-900">Registered Children</h2>
-            <p className="text-sm text-gray-400 mt-0.5">
+            <h2 className="text-base font-semibold text-slate-900 dark:text-white">Registered Children</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-300 mt-0.5">
               Phone numbers are used as the M-Pesa matching key for Smart Defaults
             </p>
           </div>
-          <div className="flex items-center gap-1.5 text-sm text-gray-400">
+          <div className="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-300">
             <IC.Info className="size-4 shrink-0" />
             <span>Showing {pageSlice.length} of {filtered.length}</span>
           </div>

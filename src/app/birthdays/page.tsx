@@ -12,14 +12,14 @@ export default function BirthdayFundPage() {
       {/* Page Header */}
       <div>
         <div className="flex items-center gap-3 mb-1">
-          <div className="size-10 rounded-xl bg-[#FF6B2B]/10 flex items-center justify-center shrink-0">
+          <div className="size-10 rounded-xl bg-orange-900/30 flex items-center justify-center shrink-0">
             <IC.Cake className="size-5 text-[#FF6B2B]" />
           </div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+          <h1 className="text-xl md:text-2xl font-bold text-white">
             Birthday Fund Management
           </h1>
         </div>
-        <p className="text-sm text-gray-500 ml-[52px]">
+        <p className="text-sm text-slate-300 ml-[52px]">
           Automated BDAY contributions — parents text using the reference &quot;BDAY&quot; on the 1st of each month
         </p>
       </div>

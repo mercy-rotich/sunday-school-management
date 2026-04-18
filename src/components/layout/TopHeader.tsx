@@ -7,7 +7,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/children":  "Children",
   "/birthdays": "Birthday Fund",
-  "/triage":    "Triage Queue",
+  "/triage":    "Payment Allocation",
   "/reports":   "Reports",
 };
 
@@ -17,25 +17,25 @@ export function TopHeader() {
   const month     = new Date().toLocaleString("default", { month: "long", year: "numeric" });
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 shrink-0">
+    <header className="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 sm:px-6 shrink-0 shadow-sm">
       <div className="flex items-center gap-3">
-        <span className="font-bold text-lg text-gray-900">{pageTitle}</span>
-        <span className="text-gray-300 hidden sm:inline">·</span>
-        <span className="text-sm text-gray-500 hidden sm:inline">{month}</span>
+        <h1 className="font-semibold text-lg text-slate-900 dark:text-white">{pageTitle}</h1>
+        <span className="text-slate-300 dark:text-slate-600 hidden sm:inline">·</span>
+        <span className="text-sm text-slate-500 dark:text-slate-300 hidden sm:inline">{month}</span>
       </div>
       <div className="flex items-center gap-2 sm:gap-3">
-        <button className="btn-modern hidden sm:inline-flex">
+        <button className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 hidden sm:inline-flex">
           <IC.Download className="size-4" />Export
         </button>
-        <button className="relative size-11 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-all duration-150 active:scale-95">
+        <button className="relative size-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
           <IC.Bell className="size-5" />
-          <span className="absolute top-2 right-2 size-2 rounded-full bg-[#FF6B2B] border border-white" />
+          <span className="absolute top-1 right-1 size-2 rounded-full bg-rose-500 border border-white dark:border-slate-900 animate-pulse-soft" />
         </button>
-        <div className="flex items-center gap-2.5 pl-3 border-l border-gray-200">
-          <div className="bg-[#00A551] flex items-center justify-center rounded-xl size-10 text-white text-sm font-extrabold shadow-sm shrink-0">T</div>
+        <div className="flex items-center gap-2.5 pl-3 border-l border-slate-200 dark:border-slate-700">
+          <div className="bg-primary-600 flex items-center justify-center rounded-lg size-9 text-white text-xs font-bold shadow-sm shrink-0">T</div>
           <div className="hidden sm:block">
-            <p className="text-sm font-semibold text-gray-900 leading-none">Welcome, Teacher</p>
-            <p className="text-xs text-gray-500 mt-0.5">Admin · KE</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white leading-none">Welcome, Teacher</p>
+            <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">Admin · KE</p>
           </div>
         </div>
       </div>

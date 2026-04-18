@@ -24,8 +24,8 @@ function NetChip({ net }: { net: number }) {
   return (
     <span className={`inline-flex items-center gap-0.5 text-xs font-bold px-2 py-1 rounded-full border whitespace-nowrap ${
       positive
-        ? "bg-green-50 text-[#007A3C] border-green-200"
-        : "bg-rose-50 text-rose-700 border-rose-200"
+        ? "bg-green-900/20 text-green-300 border-green-900/50"
+        : "bg-rose-900/20 text-rose-300 border-rose-900/50"
     }`}>
       {positive ? "+" : ""}{fmt(net)}
     </span>
@@ -37,44 +37,44 @@ export function MonthlyBreakdown() {
   const grandOut = MOCK_MONTHLY.reduce((s, r) => s + r.totalOut, 0);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden h-full flex flex-col">
+    <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden h-full flex flex-col">
 
       {/* Header */}
-      <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-slate-800 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-bold text-gray-900">Monthly Breakdown</h2>
-          <p className="text-sm text-gray-500 mt-0.5">Inflows vs outflows by month</p>
+          <h2 className="text-base font-bold text-white">Monthly Breakdown</h2>
+          <p className="text-sm text-slate-300 mt-0.5">Inflows vs outflows by month</p>
         </div>
-        <div className="size-9 rounded-xl bg-gray-50 flex items-center justify-center">
-          <IC.PieChart className="size-5 text-gray-400" />
+        <div className="size-9 rounded-xl bg-slate-800 flex items-center justify-center">
+          <IC.PieChart className="size-5 text-slate-300" />
         </div>
       </div>
 
       {/* Column labels */}
-      <div className="grid grid-cols-4 gap-2 px-5 py-2.5 bg-gray-50/60 border-b border-gray-100">
+      <div className="grid grid-cols-4 gap-2 px-5 py-2.5 bg-slate-900/60 border-b border-slate-800">
         {["Month", "In", "Out", "Net"].map((h) => (
-          <span key={h} className="text-xs font-bold uppercase tracking-wide text-gray-400">
+          <span key={h} className="text-xs font-bold uppercase tracking-wide text-slate-200">
             {h}
           </span>
         ))}
       </div>
 
       {/* Rows */}
-      <div className="flex-1 flex flex-col divide-y divide-gray-50 overflow-x-auto">
+      <div className="flex-1 flex flex-col divide-y divide-slate-800 overflow-x-auto">
         {MOCK_MONTHLY.map((row, i) => {
           const net = row.totalIn - row.totalOut;
           const isCurrentMonth = i === 0;
           return (
             <div
               key={row.month}
-              className={`grid grid-cols-4 gap-2 items-center px-5 py-3.5 min-w-[320px] transition-colors hover:bg-gray-50/60 ${
-                isCurrentMonth ? "bg-green-50/40" : ""
+              className={`grid grid-cols-4 gap-2 items-center px-5 py-3.5 min-w-[320px] transition-colors hover:bg-slate-800/50 ${
+                isCurrentMonth ? "bg-green-900/15" : ""
               }`}
             >
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-gray-700 whitespace-nowrap">{row.month}</span>
+                <span className="text-sm font-semibold text-slate-200 whitespace-nowrap">{row.month}</span>
                 {isCurrentMonth && (
-                  <span className="text-xs font-bold bg-green-100 text-[#00A551] px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                  <span className="text-xs font-bold bg-green-900/40 text-green-300 px-1.5 py-0.5 rounded-full uppercase tracking-wide border border-green-900/50">
                     Now
                   </span>
                 )}
@@ -82,7 +82,7 @@ export function MonthlyBreakdown() {
               <span className="text-sm font-bold font-mono text-[#00A551] whitespace-nowrap">
                 {fmt(row.totalIn)}
               </span>
-              <span className="text-sm font-bold font-mono text-rose-600 whitespace-nowrap">
+              <span className="text-sm font-bold font-mono text-rose-400 whitespace-nowrap">
                 -{fmt(row.totalOut)}
               </span>
               <NetChip net={net} />
@@ -92,11 +92,11 @@ export function MonthlyBreakdown() {
       </div>
 
       {/* Grand totals */}
-      <div className="border-t-2 border-gray-200 bg-gray-50">
+      <div className="border-t-2 border-slate-800 bg-slate-900/50">
         <div className="grid grid-cols-4 gap-2 px-5 py-4 min-w-[320px]">
-          <span className="text-xs font-bold uppercase text-gray-500 tracking-wide">Total</span>
+          <span className="text-xs font-bold uppercase text-slate-200 tracking-wide">Total</span>
           <span className="text-sm font-bold font-mono text-[#00A551]">{fmt(grandIn)}</span>
-          <span className="text-sm font-bold font-mono text-rose-600">-{fmt(grandOut)}</span>
+          <span className="text-sm font-bold font-mono text-rose-400">-{fmt(grandOut)}</span>
           <NetChip net={grandIn - grandOut} />
         </div>
       </div>

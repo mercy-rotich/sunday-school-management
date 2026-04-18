@@ -38,7 +38,7 @@ export default function DashboardPage() {
         <MetricCard
           label="Action Required"
           value={`${liveCount} payment${liveCount !== 1 ? "s" : ""}`}
-          sub="Awaiting manual allocation in triage"
+          sub="Awaiting manual allocation in Payment Allocation"
           variant="alert"
           icon={<IC.Alert className="size-5" />}
         />
@@ -47,20 +47,20 @@ export default function DashboardPage() {
       {/* Triage + Birthday — stacked on mobile, side by side on xl */}
       <section className="grid grid-cols-1 xl:grid-cols-[1fr_316px] gap-4">
 
-        {/* Triage */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
-          <div className="px-4 md:px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+        {/* Payment Allocation */}
+        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-card border border-slate-100 dark:border-slate-800 overflow-hidden">
+          <div className="px-4 md:px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900 dark:bg-slate-800/50">
             <div>
               <div className="flex items-center gap-2.5">
-                <h2 className="text-base font-bold text-gray-900">Triage Queue</h2>
+                <h2 className="text-base font-semibold text-slate-900 dark:text-white">Payment Allocation</h2>
                 {triage && triage.length > 0 && (
-                  <span className="badge-alert">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300 text-xs font-semibold ring-1 ring-rose-600/20 dark:ring-rose-600/20">
                     {triage.length} pending
                   </span>
                 )}
               </div>
-              <p className="text-sm text-gray-500 mt-1">
-                Payments that couldn&apos;t be auto-allocated. Assign each to a child and save.
+              <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
+                Payments that couldn&apos;t be auto-assigned. Review and assign each to a child.
               </p>
             </div>
           </div>
@@ -68,14 +68,14 @@ export default function DashboardPage() {
         </div>
 
         {/* Birthday Module */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden">
-          <div className="px-4 md:px-5 py-4 border-b border-gray-100 flex items-center gap-3">
-            <div className="size-9 rounded-xl bg-orange-50 flex items-center justify-center">
-              <IC.Cake className="size-5 text-[#FF6B2B]" />
+        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-card border border-slate-100 dark:border-slate-800 overflow-hidden">
+          <div className="px-4 md:px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3 bg-slate-50 dark:bg-slate-900 dark:bg-slate-800/50">
+            <div className="size-9 rounded-lg bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center">
+              <IC.Cake className="size-5 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-gray-900 leading-none">Birthday Module</h2>
-              <p className="text-sm text-gray-500 mt-0.5">July 2025</p>
+              <h2 className="text-base font-semibold text-slate-900 dark:text-white leading-tight">Birthday Module</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-300 mt-0.5">July 2025</p>
             </div>
           </div>
           <div className="p-4">
@@ -85,25 +85,25 @@ export default function DashboardPage() {
       </section>
 
       {/* Activity Feed */}
-      <section className="bg-white rounded-2xl border border-gray-200 shadow-card px-4 md:px-5 py-4">
+      <section className="bg-white dark:bg-slate-900 rounded-xl shadow-card border border-slate-100 dark:border-slate-800 px-4 md:px-5 py-4">
         <div className="flex items-center gap-2 mb-4">
-          <IC.Activity className="size-5 text-[#00A551] shrink-0" />
-          <h2 className="text-base font-bold text-gray-900">Recent Activity</h2>
-          <span className="text-gray-400 text-sm hidden sm:inline">
+          <IC.Activity className="size-5 text-primary-600 dark:text-primary-400 shrink-0" />
+          <h2 className="text-base font-semibold text-slate-900 dark:text-white">Recent Activity</h2>
+          <span className="text-slate-300 text-sm hidden sm:inline">
             · Latest automated &amp; manual events
           </span>
         </div>
-        <div className="flex flex-col divide-y divide-gray-50">
+        <div className="flex flex-col divide-y divide-slate-100 dark:divide-slate-800">
           {dashLoading
             ? [1, 2, 3].map((i) => <Skeleton key={i} className="h-10 my-1" />)
             : dash!.activity.map((item) => (
               <div key={item.id} className="flex items-start sm:items-center gap-3 py-3">
                 <span className={`size-2.5 rounded-full shrink-0 mt-1 sm:mt-0 ${
-                  item.type === "success"  ? "bg-[#00A551]" :
-                  item.type === "birthday" ? "bg-[#FF6B2B]" : "bg-amber-400"
+                  item.type === "success"  ? "bg-primary-500" :
+                  item.type === "birthday" ? "bg-amber-500" : "bg-yellow-400"
                 }`} />
-                <span className="flex-1 text-sm text-gray-600">{item.desc}</span>
-                <span className="text-sm text-gray-400 shrink-0">{item.time}</span>
+                <span className="flex-1 text-sm text-slate-600 dark:text-slate-300">{item.desc}</span>
+                <span className="text-sm text-slate-400 dark:text-slate-300 shrink-0">{item.time}</span>
               </div>
             ))
           }

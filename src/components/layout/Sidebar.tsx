@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   { label: "Dashboard",     href: "/dashboard", Icon: IC.Grid,  badge: false },
   { label: "Children",      href: "/children",  Icon: IC.Users, badge: false },
   { label: "Birthday Fund", href: "/birthdays", Icon: IC.Gift,  badge: false },
-  { label: "Triage Queue",  href: "/triage",    Icon: IC.Alert, badge: true  },
+  { label: "Payment Allocation",  href: "/triage",    Icon: IC.Alert, badge: true  },
   { label: "Reports",       href: "/reports",   Icon: IC.Trend, badge: false },
 ];
 
@@ -24,19 +24,19 @@ export function Sidebar({ collapsed, onToggle, unallocatedCount }: SidebarProps)
   return (
     <aside
       className={`
-        flex flex-col shrink-0 bg-[#0D2B1C]
+        flex flex-col shrink-0 bg-slate-900 dark:bg-slate-900
         transition-all duration-[280ms] ease-in-out
         w-[60px] ${collapsed ? "sm:w-[72px]" : "sm:w-[224px]"}
       `}
     >
       {/* Logo */}
-      <div className="flex items-center justify-center sm:justify-start border-b border-white/[0.08] py-5 px-0 sm:px-4 gap-0 sm:gap-3">
-        <div className="size-9 rounded-xl bg-[#00A551] flex items-center justify-center text-white text-base shrink-0 leading-none font-extrabold shadow-sm">
+      <div className="flex items-center justify-center sm:justify-start border-b border-slate-700/50 py-5 px-0 sm:px-4 gap-0 sm:gap-3">
+        <div className="size-9 rounded-xl bg-primary-600 flex items-center justify-center text-white text-base shrink-0 leading-none font-extrabold shadow-lg">
           ✝
         </div>
         <div className={`hidden ${collapsed ? "sm:hidden" : "sm:block"}`}>
           <p className="text-sm font-bold text-white leading-tight">SundaySchool</p>
-          <p className="text-xs text-[#4ade80] mt-0.5 font-medium">Finance Portal</p>
+          <p className="text-xs text-slate-400 mt-0.5 font-medium">Finance Portal</p>
         </div>
       </div>
 
@@ -51,25 +51,25 @@ export function Sidebar({ collapsed, onToggle, unallocatedCount }: SidebarProps)
               href={href}
               title={label}
               className={`
-                relative flex items-center justify-center rounded-xl
-                transition-all duration-150 overflow-hidden py-3
+                relative flex items-center justify-center rounded-lg
+                transition-all duration-200 overflow-hidden py-2.5
                 ${collapsed ? "sm:justify-center sm:px-0" : "sm:justify-start sm:gap-3 sm:px-3"}
                 ${active
-                  ? "bg-[#00A551] text-white shadow-sm"
-                  : "text-green-300 hover:text-white hover:bg-[#1A4A2E]"}
+                  ? "bg-primary-600 text-white"
+                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"}
               `}
             >
               <Icon className="size-5 shrink-0" />
-              <span className={`text-sm hidden ${collapsed ? "sm:hidden" : "sm:block"} ${active ? "font-bold" : "font-medium"} flex-1`}>
+              <span className={`text-sm hidden ${collapsed ? "sm:hidden" : "sm:block"} ${active ? "font-semibold" : "font-medium"} flex-1`}>
                 {label}
               </span>
               {!collapsed && showBadge && (
-                <span className="text-xs font-bold bg-[#FF6B2B] text-white px-2 py-0.5 rounded-full leading-none hidden sm:block">
+                <span className="text-xs font-bold bg-rose-500 text-white px-2 py-0.5 rounded-full leading-none hidden sm:block">
                   {unallocatedCount}
                 </span>
               )}
               {showBadge && (
-                <span className="absolute top-1 right-1 size-2.5 rounded-full bg-[#FF6B2B] border-2 border-[#0D2B1C]" />
+                <span className="absolute top-1 right-1 size-2.5 rounded-full bg-rose-500 border-2 border-slate-900" />
               )}
             </Link>
           );
@@ -77,10 +77,10 @@ export function Sidebar({ collapsed, onToggle, unallocatedCount }: SidebarProps)
       </nav>
 
       {/* Toggle — desktop only */}
-      <div className={`border-t border-white/[0.08] py-3 hidden sm:flex ${collapsed ? "justify-center" : "justify-end px-3"}`}>
+      <div className={`border-t border-slate-700/50 py-3 hidden sm:flex ${collapsed ? "justify-center" : "justify-end px-3"}`}>
         <button
           onClick={onToggle}
-          className="size-8 rounded-lg cursor-pointer flex items-center justify-center bg-white/[0.07] hover:bg-[#00A551] text-green-400 hover:text-white transition-all duration-150"
+          className="size-8 rounded-lg cursor-pointer flex items-center justify-center bg-slate-800 hover:bg-primary-600 text-slate-400 hover:text-white transition-all duration-200"
         >
           {collapsed ? <IC.ChevR className="size-4" /> : <IC.ChevL className="size-4" />}
         </button>

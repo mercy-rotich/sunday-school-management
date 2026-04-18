@@ -14,7 +14,7 @@ interface TriageTableProps {
 }
 
 const TH = ({ children }: { children: React.ReactNode }) => (
-  <th className="px-4 py-3 text-left text-xs font-bold tracking-wide uppercase text-gray-400 whitespace-nowrap border-b-2 border-gray-100 bg-gray-50/60">
+  <th className="px-4 py-3 text-left text-xs font-bold tracking-wide uppercase text-slate-200 whitespace-nowrap border-b-2 border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60">
     {children}
   </th>
 );
@@ -54,7 +54,7 @@ export function TriageTable({ payments, onAllocate, isLoading }: TriageTableProp
           <IC.Check className="size-6 text-[#00A551]" />
         </div>
         <p className="text-sm font-semibold text-[#00A551]">All clear!</p>
-        <p className="text-sm text-gray-400">No unallocated payments right now.</p>
+        <p className="text-sm text-slate-300">No unallocated payments right now.</p>
       </div>
     );
   }
@@ -77,24 +77,24 @@ export function TriageTable({ payments, onAllocate, isLoading }: TriageTableProp
           {payments.map((p, i) => (
             <tr
               key={p.id}
-              className={`border-b border-gray-50 transition-colors duration-300 ${
+              className={`border-b border-slate-100 dark:border-slate-800 transition-colors duration-300 ${
                 saved[p.id]
-                  ? "bg-green-50 opacity-60"
+                  ? "bg-green-50 dark:bg-green-900/10 opacity-60"
                   : i % 2 === 0
-                  ? "bg-white hover:bg-gray-50"
-                  : "bg-gray-50/60 hover:bg-gray-100/60"
+                  ? "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  : "bg-slate-50 dark:bg-slate-900/60 hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
               }`}
             >
               {/* M-Pesa Ref */}
               <td className="px-4 py-3.5">
-                <code className="text-xs font-semibold bg-gray-100 text-gray-500 px-2 py-1 rounded-lg">
+                <code className="text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-300 px-2 py-1 rounded-lg">
                   {p.mpesaRef}
                 </code>
               </td>
 
               {/* Sender */}
               <td className="px-4 py-3.5">
-                <span className="flex items-center gap-1.5 font-mono text-xs text-gray-500">
+                <span className="flex items-center gap-1.5 font-mono text-xs text-slate-300">
                   <IC.Phone className="size-3.5 shrink-0" />
                   {p.phone}
                 </span>
@@ -102,14 +102,14 @@ export function TriageTable({ payments, onAllocate, isLoading }: TriageTableProp
 
               {/* Amount */}
               <td className="px-4 py-3.5">
-                <span className="font-bold font-mono text-sm text-gray-800">
+                <span className="font-bold font-mono text-sm text-slate-800 dark:text-slate-100">
                   {fmt(p.amount)}
                 </span>
               </td>
 
               {/* Received */}
               <td className="px-4 py-3.5">
-                <span className="text-sm text-gray-400">{fmtT(p.receivedAt)}</span>
+                <span className="text-sm text-slate-300">{fmtT(p.receivedAt)}</span>
               </td>
 
               {/* Flag */}
@@ -127,10 +127,10 @@ export function TriageTable({ payments, onAllocate, isLoading }: TriageTableProp
                     setSels((s) => ({ ...s, [p.id]: e.target.value }))
                   }
                   disabled={saved[p.id]}
-                  className={`min-w-[160px] rounded-xl border px-3 py-2 text-sm text-gray-700 bg-white outline-none
+                  className={`min-w-[160px] rounded-xl border px-3 py-2 text-sm text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 outline-none
                     focus:ring-2 focus:ring-[#00A551]/30 focus:border-[#00A551] transition-colors
-                    disabled:bg-green-50 disabled:cursor-not-allowed
-                    ${sels[p.id] ? "border-[#00A551]" : "border-gray-200"}`}
+                    disabled:bg-green-50 dark:disabled:bg-green-900/10 disabled:cursor-not-allowed
+                    ${sels[p.id] ? "border-[#00A551]" : "border-slate-200 dark:border-slate-700"}`}
                 >
                   <option value="">Select child…</option>
                   {MOCK_CHILDREN.map((c) => (
@@ -154,7 +154,7 @@ export function TriageTable({ payments, onAllocate, isLoading }: TriageTableProp
                         ? "bg-green-50 text-[#00A551] cursor-wait"
                         : sels[p.id]
                         ? "bg-[#00A551] text-white hover:bg-[#007A3C] active:scale-95"
-                        : "bg-gray-100 text-gray-300 cursor-not-allowed"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed"
                     }`}
                 >
                   {saved[p.id] ? (

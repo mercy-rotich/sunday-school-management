@@ -20,30 +20,30 @@ interface MetricCardProps {
 function MetricCard({ label, value, sub, icon, variant }: MetricCardProps) {
   const styles = {
     default: {
-      card:  "bg-white border border-gray-200 border-l-4 border-l-[#00A551]",
-      label: "text-[#00A551]",
-      value: "text-gray-800",
-      sub:   "text-gray-400",
-      well:  "bg-green-50 text-[#00A551]",
+      card:  "bg-slate-900 border border-slate-800 border-l-4 border-l-[#00A551]",
+      label: "text-green-300",
+      value: "text-slate-100",
+      sub:   "text-slate-300",
+      well:  "bg-green-900/30 text-[#00A551]",
     },
     expense: {
-      card:  "bg-white border border-gray-200 border-l-4 border-l-rose-500",
-      label: "text-rose-500",
-      value: "text-gray-800",
-      sub:   "text-gray-400",
-      well:  "bg-rose-50 text-rose-500",
+      card:  "bg-slate-900 border border-slate-800 border-l-4 border-l-rose-500",
+      label: "text-rose-300",
+      value: "text-slate-100",
+      sub:   "text-slate-300",
+      well:  "bg-rose-900/20 text-rose-400",
     },
     net: {
-      card:  "bg-green-50 border border-green-200 border-l-4 border-l-[#007A3C]",
-      label: "text-[#007A3C]",
-      value: "text-[#007A3C]",
-      sub:   "text-green-600",
-      well:  "bg-green-100 text-[#007A3C]",
+      card:  "bg-green-900/20 border border-green-900/50 border-l-4 border-l-[#00A551]",
+      label: "text-green-300",
+      value: "text-[#00A551]",
+      sub:   "text-green-300",
+      well:  "bg-green-900/40 text-[#00A551]",
     },
   }[variant];
 
   return (
-    <div className={`rounded-2xl p-5 flex flex-col gap-3 shadow-card ${styles.card}`}>
+    <div className={`rounded-2xl p-5 flex flex-col gap-3 ${styles.card}`}>
       <div className="flex items-start justify-between">
         <span className={`text-xs font-semibold uppercase tracking-wide ${styles.label}`}>
           {label}
