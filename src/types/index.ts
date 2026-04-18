@@ -1,3 +1,24 @@
+// ─── Auth ───────────────────────────────────────────────────────────────────
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  role: 'admin';
+}
+
+export interface AuthState {
+  user: AuthUser | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
 // ─── Domain Types ───────────────────────────────────────────────────────────
 
 export interface Child {
@@ -56,6 +77,7 @@ export interface BirthdayData {
 export interface UiState {
   sidebarCollapsed: boolean;
   activeNav: string;
+  darkMode: boolean;
 }
 
 export type MetricVariant = "default" | "birthday" | "alert";
